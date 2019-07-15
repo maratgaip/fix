@@ -1,5 +1,8 @@
 #Fixinity
 
+##HTML Landing Page
+source: public/landing
+
 ##Setup
 
 * ```yarn install ``` or ``` npm install``` - To install all dependencies
