@@ -50,3 +50,6 @@ before deployment change back to:
 
 and build files
 ```yarn build```
+
+to see the static website, go to
+```http://localhost:3000/landing```
