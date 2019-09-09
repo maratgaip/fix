@@ -1,6 +1,8 @@
 .content-repair {
-  text-align: center;
-  margin-top: 10%; }
+  margin-top: 3%;
+  border: solid 1px #eee;
+  background-color: #fafafa;
+  padding: 30px; }
   .content-repair .box-device {
     box-sizing: border-box;
     display: inline-block;
@@ -14,6 +16,68 @@
       background-color: #ccc; }
     .content-repair .box-device:first-of-type {
       margin-right: 100px; }
+  .content-repair .box-select {
+    border: 1px solid #e7ebeb;
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    box-sizing: border-box;
+    font-size: 14px;
+    font-weight: 500;
+    display: inline-block;
+    padding: 12px 20px;
+    cursor: pointer;
+    position: relative;
+    background-color: white; }
+    .content-repair .box-select:hover {
+      box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.1); }
+    .content-repair .box-select.selected {
+      background-color: #FAFBFC;
+      box-shadow: none; }
+      .content-repair .box-select.selected:after {
+        content: '';
+        background-image: url(./assets/triangle.svg);
+        width: 15px;
+        height: 9px;
+        display: block;
+        position: absolute;
+        bottom: -8px;
+        left: calc(50% - 10px); }
+  .content-repair .content {
+    border: 1px solid #e7ebeb;
+    padding: 20px 20px 50px 20px;
+    margin-top: 10px;
+    overflow: auto; }
+  .content-repair .content-body {
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    /* NEW */
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; }
+    .content-repair .content-body .value {
+      width: 20%;
+      text-align: left;
+      line-height: 32px;
+      cursor: pointer;
+      padding: 2px;
+      padding-left: 10px;
+      margin-right: 20px; }
+      .content-repair .content-body .value:hover {
+        color: #36485b;
+        box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.15);
+        font-weight: 600;
+        position: relative; }
+        .content-repair .content-body .value:hover:after {
+          content: '';
+          display: block;
+          width: 10px;
+          height: 10px;
+          background: url(./assets/icon-chevron.svg) no-repeat center center;
+          background-size: contain;
+          position: absolute;
+          right: 10px;
+          top: 15px; }
   @media screen and (max-width: 768px) {
     .content-repair .box-device:first-of-type {
       margin-right: 20px; } }
