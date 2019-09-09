@@ -26,8 +26,8 @@ app.get('/', (req, res) => {
 
 const handler = (req, res) => res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));
 
-//const routes = ["/repair", "/chat", "/repair/*", "/chat/*"];
-const routes = ["/"];
+const routes = ["/repair", "/chat", "/repair/*", "/chat/*"];
+//const routes = ["/"];
 
 routes.forEach( route => app.get(route, handler) );
 
