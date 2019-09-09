@@ -32,7 +32,7 @@ const App = props => {
         <Route path="/no-support" component={withTracker(NoSupport)} />
 */
         /* Car Fixing URLs */
-        <Route path="/repair" component={RepairCar} />
+        <Route path="/diagnose" component={RepairCar} />
         <Route path="/chat" component={Chat} />
       </Switch>
     </ConnectedRouter>
