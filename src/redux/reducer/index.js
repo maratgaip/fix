@@ -3,6 +3,7 @@ import { routerReducer } from 'react-router-redux';
 
 const data2019 = {
   "Acura": ["ILX", "MDX", "NSX", "RDX", "RLX", "TLX"],
+  "Alfa Romeo": ["4C", "Giulia", "Stelvio"],
   "Audi": ["A3", "A3 Quattro", "A4", "A4 Quattro", "A4 allroad", "A5 Quattro", "A5 Sportback", "A6 Quattro", "A7 Quattro", "A7 Sportback", "A8 Quattro", "Q2", "Q2 Quattro", "Q3", "Q5", "Q7", "Q8", "RS3", "RS5", "RS5 Sportback", "S3", "S4", "S5", "S5 Sportback", "SQ5", "TT Quattro", "e-tron Quattro"],
   "BMW": ["118i", "120i", "220i", "230i", "230i xDrive", "330i", "330i GT xDrive", "330i xDrive", "340i GT xDrive", "420i", "420i Gran Coupe", "430i", "430i Gran Coupe", "430i xDrive", "430i xDrive Gran Coupe", "440i", "440i Gran Coupe", "440i xDrive", "440i xDrive Gran Coupe", "520i", "530e", "530e xDrive", "530i", "530i xDrive", "540i", "540i xDrive", "640i Gran Coupe", "640i xDrive Gran Coupe", "640i xDrive Gran Turismo", "650i Gran Coupe", "650i xDrive Gran Coupe", "740e xDrive", "740i", "740i xDrive", "750Li", "750Li xDrive", "750i", "750i xDrive", "Alpina B6 xDrive Gran Coupe", "Alpina B7", "M140i", "M2", "M240i", "M240i xDrive", "M340i", "M340i xDrive", "M4", "M5", "M550i xDrive", "M6 Gran Coupe", "M760Li xDrive", "M760i xDrive", "M850i xDrive", "SDRIVE 30I", "SDRIVE30I", "X1", "X2", "X3", "X4", "X5", "X6", "X7", "i3", "i3s", "i8"],
   "Bentley": ["Bentayga", "Continental", "Flying Spur", "Mulsanne"],
@@ -56,6 +57,7 @@ const jsonData = {
   "2013":{"Ford":["Taurus","C-MAX Hybrid","Edge","Escape","Explorer","Fiesta","Flex","Focus","Focus ST","Fusion","Mustang","Transit Connect"],"Hyundai":["Veloster","Accent","Elantra","Equus","Genesis Coupe","Sonata"],"Chevrolet":["Cruze","Malibu","Tahoe"],"Audi":["S4"],"BMW":["X5","X5 M","X6","X6 M"],"GMC":["Sierra 1500","Yukon","Yukon XL 1500","Yukon XL 2500"],"Infiniti":["JX"],"Jaguar":["XK Series"],"Kia":["Rio","Sorento"],"Lexus":["GS","LX","RX"],"Lincoln":["MKS","MKT","MKX"],"Mazda":["CX-5","MAZDA6"],"Nissan":["Altima","GT-R"],"Porsche":["911","Boxster","Cayenne","Panamera"],"Rolls-Royce":["Phantom"],"Scion":["FR-S","tC"],"Subaru":["BRZ"],
     "Toyota":["Land Cruiser","Venza"],"Volkswagen":["CC"],"Volvo":["C30","C70","S60","XC90"],
     "Acura": ["ILX", "MDX", "NSX", "RDX", "RLX", "TLX"],
+    "Alfa Romeo": ["4C", "Giulia", "Stelvio"],
   },
   "2014": data2019,
   "2015": data2019,

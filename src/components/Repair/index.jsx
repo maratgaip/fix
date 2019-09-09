@@ -8,7 +8,7 @@ import './style.css';
 import {connect} from "react-redux";
 import {actions} from "../../redux/reducer";
 
-const newPostJobURL = 'http://fixinity-api-staging.herokuapp.com/api/v1/jobRequest/new';
+const newPostJobURL = 'https://fixinity-api-staging.herokuapp.com/api/v1/jobRequest/new';
 
 class RepairCar extends Component {
     constructor(props){
