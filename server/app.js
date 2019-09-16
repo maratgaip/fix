@@ -18,9 +18,9 @@ app.get('/', (req, res) => {
 });*/
 
 // Always return the main index.html, so react-router render the route in the client
-/*app.get('/blog', (req, res) => {
+app.get('/blog', (req, res) => {
   res.sendFile(path.resolve(__dirname, '..', 'build/blog', 'index.html'));
-});*/
+});
 
 // Always return the main index.html, so react-router render the route in the client
 
