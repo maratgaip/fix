@@ -9,6 +9,7 @@ app.use(morgan(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:htt
 
 // Serve static assets
 app.use(express.static(path.resolve(__dirname, '..', 'build/landing')));
+// app.use(express.static(path.resolve(__dirname, '..', 'build/blog')));
 app.use(express.static(path.resolve(__dirname, '..', 'build')));
 /*
 // Always return the main index.html, so react-router render the route in the client
@@ -17,10 +18,16 @@ app.get('/', (req, res) => {
 });*/
 
 // Always return the main index.html, so react-router render the route in the client
+app.get('/blog', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '..', 'build/blog', 'index.html'));
+});
+
+// Always return the main index.html, so react-router render the route in the client
+
 const handler = (req, res) => res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));
 
-//const routes = ["/repair", "/chat", "/repair/*", "/chat/*"];
-const routes = ["/"];
+const routes = ["/diagnose", "/chat", "/diagnose/*", "/chat/*"];
+//const routes = ["/"];
 
 routes.forEach( route => app.get(route, handler) );
 

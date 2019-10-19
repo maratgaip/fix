@@ -21,17 +21,18 @@ const App = props => {
   return (
     <ConnectedRouter history={history}>
       <Switch>
+        /*
         <Route path="/repair/:device/:model/:color/:issue/schedule/booking" component={withTracker(Booking)} />
         <Route path="/repair/:device/:model/:color/:issue/schedule" component={withTracker(Schedule)} />
-        /*<Route path="/repair/:device/:model/:color/zip-code" component={withTracker(ZipCode)} />*/
+        <Route path="/repair/:device/:model/:color/zip-code" component={withTracker(ZipCode)} />
         <Route path="/repair/:device/:model/:color" component={withTracker(Color)} />
         <Route path="/repair/:device/:model" component={withTracker(Model)} />
         <Route path="/repair/:device" component={withTracker(Device)} />
         <Route path="/repair" component={withTracker(RepairCar)} />
         <Route path="/no-support" component={withTracker(NoSupport)} />
-
+*/
         /* Car Fixing URLs */
-        <Route path="/" component={RepairCar} />
+        <Route path="/diagnose" component={RepairCar} />
         <Route path="/chat" component={Chat} />
       </Switch>
     </ConnectedRouter>
