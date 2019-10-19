@@ -5,8 +5,8 @@ source: public/landing
 
 ##Setup
 
-* ```yarn install ``` or ``` npm install``` - To install all dependencies
-* ```yarn start  ``` or ```  npm start``` - To start the project
+* ```yarn install ``` - To install all dependencies
+* ```yarn start  ``` - To start the project
 
 ##Deployment
 
