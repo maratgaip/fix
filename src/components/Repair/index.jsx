@@ -26,7 +26,8 @@ class RepairCar extends Component {
           zip: '',
           description: '',
           isJobPosted: '',
-          err: ''
+          err: '',
+          submitEnabled: true,
         }
     }
 
@@ -39,6 +40,7 @@ class RepairCar extends Component {
         if (!this.isPhoneValid() || !this.isZipValid()){
           return
         }
+        this.setState({submitEnabled: false})
         const data = {
           name,
           phone,
@@ -47,7 +49,7 @@ class RepairCar extends Component {
           model: selectedModel,
           year: selectedYear,
           zip,
-        }
+        };
         fetch(newPostJobURL,{
           method: 'POST',
           mode: 'no-cors',
@@ -58,11 +60,11 @@ class RepairCar extends Component {
             this.setState({isJobPosted: true})
           })
           .catch((err) => {
-            console.log('eee',err)
+            console.log('eee', err)
             this.setState({isJobPosted: true, err: err})
           });
       }
-    }
+  }
 
   onInputChange = (type,e) => {
     this.setState({[type]: e.target.value});
@@ -89,20 +91,20 @@ class RepairCar extends Component {
     this.setState({phone});
   }
 
-    onClickTitle = (title) => {
-        this.setState({
-            activeTab: this.state.makeOptions.indexOf(title),
-        })
-    }
-    onSelect = data => {
-        const {activeTab: oldActiveTab, selectedOptions} = this.state;
-        const selected  = selectedOptions[oldActiveTab];
-        const activeTab  = oldActiveTab + 1;
-        this.setState({
-            [selected]: data,
-            activeTab,
-        })
-    }
+  onClickTitle = (title) => {
+      this.setState({
+          activeTab: this.state.makeOptions.indexOf(title),
+      })
+  }
+  onSelect = data => {
+      const {activeTab: oldActiveTab, selectedOptions} = this.state;
+      const selected  = selectedOptions[oldActiveTab];
+      const activeTab  = oldActiveTab + 1;
+      this.setState({
+          [selected]: data,
+          activeTab,
+      })
+  }
 
   render() {
 
@@ -176,22 +178,23 @@ class RepairCar extends Component {
                     </div>
                   </div>
                   <div className="form-group row col-md-6">
-                    <label htmlFor="inputPassword" className="col-sm-2 col-form-label">Phone</label>
+                    <label className="col-sm-2 col-form-label">Phone</label>
                     <div className="col-sm-10">
                       <input onKeyDown={this.onKeyDown} value={this.state.phone} onChange={e=>this.onInputChange('phone',e)} required className={phoneClassName}  placeholder="111-111-1111"/>
                     </div>
                   </div>
                   <div className="form-group row col-md-6">
-                    <label htmlFor="inputPassword" className="col-sm-2 col-form-label">Zip</label>
+                    <label className="col-sm-2 col-form-label">Zip</label>
                     <div className="col-sm-10">
                       <input value={this.state.zip} onChange={e=>this.onInputChange('zip',e)} required className={zipClassName}  placeholder="Zip Code"/>
                     </div>
                   </div>
                   <div className="form-group row col-md-6">
+                    <label className="col-sm-2 col-form-label">Describe your issue</label>
                     <textarea value={this.state.description} onChange={e=>this.onInputChange('description',e)} className="form-control" id="validationTextarea"
                               placeholder="Describe your problem" required></textarea>
                   </div>
-                  <button onClick={this.onSubmit} type="submit" className="btn btn-primary">Get a Quote</button>
+                  <button onClick={this.onSubmit} type="submit" className="btn btn-primary" disabled={!this.state.submitEnabled} >Submit</button>
                 </form>
               </div>
           )

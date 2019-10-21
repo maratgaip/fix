@@ -48,15 +48,15 @@
     margin-top: 10px;
     overflow: auto; }
   .content-repair .content-body {
-    height: 300px;
+    /*height: 300px;*/
     display: flex;
-    flex-direction: column;
+    /*flex-direction: column;*/
     /* NEW */
-    justify-content: center;
+    /*justify-content: center;*/
     align-items: center;
     flex-wrap: wrap; }
     .content-repair .content-body .value {
-      width: 20%;
+      width: 120px;
       text-align: left;
       line-height: 32px;
       cursor: pointer;
