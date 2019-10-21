@@ -1535,6 +1535,7 @@ img {
     .site-header #navbar .navbar-nav {
         height: 100%;
         overflow: auto;
+        background-color: #F17526;
     }
 
     .site-header #navbar .close-navbar {
@@ -2225,7 +2226,6 @@ hero-style-2
 }
 
 .header-style-1 {
-    /*background: #fdf3ed;*/
     background: #F17526;
     position: relative;
     padding-top: 0;

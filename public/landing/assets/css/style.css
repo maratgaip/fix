@@ -1535,6 +1535,7 @@ img {
     .site-header #navbar .navbar-nav {
         height: 100%;
         overflow: auto;
+        background-color: #F17526;
     }
 
     .site-header #navbar .close-navbar {
