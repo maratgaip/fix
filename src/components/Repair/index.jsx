@@ -199,7 +199,7 @@ class RepairCar extends Component {
               </div>
           )
         if (this.state.isJobPosted){
-          contentData = this.state.err ? <p>{this.state.err}</p> : <p>Your quote has been successfully sent. Our technician will contact you soon.</p>
+          contentData = this.state.err ? <p>{this.state.err}</p> : <p>We have received your request. Your independent advisor will contact with you soon.</p>
         }
       }
 
