@@ -1,7 +1,9 @@
 import React, { Component, Fragment } from 'react';
-import { Link } from 'react-router-dom';
-import iphone from './assets/iphone.png';
-import ipad from './assets/ipad.png';
+import ReactDOM from 'react-dom';
+import cx from 'classnames';
+
+import Month from '../Common/Calendar/month';
+import Time from '../Common/Calendar/time';
 
 import Header from '../Common/Header';
 import './style.css';
@@ -9,10 +11,12 @@ import {connect} from "react-redux";
 import {actions} from "../../redux/reducer";
 
 const newPostJobURL = 'https://fixinity-api-staging.herokuapp.com/api/v1/jobRequest/new';
+const dateFormat = "MM/DD/YYYY";
 
 class RepairCar extends Component {
     constructor(props){
-        super(props)
+        super(props);
+      this.refProceed = React.createRef();
         this.state = {
           selectedMake: '',
           selectedModel: '',
@@ -24,21 +28,34 @@ class RepairCar extends Component {
           name: '',
           phone: '',
           zip: '',
+          address: '',
           description: '',
           isJobPosted: '',
           err: '',
           submitEnabled: true,
+          info: {
+            date: '',
+            time: '',
+          },
+          showErrors: false,
         }
     }
 
 
 
   onSubmit = (e) => {
-      const { name, description, phone, zip, selectedMake, selectedYear, selectedModel } = this.state;
-      if (name && phone && description && zip){
+      const { name, description, phone, zip, address, info, selectedMake, selectedYear, selectedModel } = this.state;
+    const { time,date } = info;
+      if (name && phone && description && zip && address){
         e.preventDefault();
         if (!this.isPhoneValid() || !this.isZipValid()){
           return
+        }
+        if (!date.length || !time.length) {
+          this.setState({showErrors: true})
+          return
+        } else {
+          this.setState({showErrors: false})
         }
         this.setState({submitEnabled: false})
         const data = {
@@ -49,6 +66,9 @@ class RepairCar extends Component {
           model: selectedModel,
           year: selectedYear,
           zip,
+          time,
+          date,
+          address,
         };
         fetch(newPostJobURL,{
           method: 'POST',
@@ -106,9 +126,16 @@ class RepairCar extends Component {
       })
   }
 
+  handleChangeMonth = date => this.setState({ info: {...this.state.info, date: date.format(dateFormat), time: ''} });
+
+  handleChangeTime = (time) => {
+    this.setState({ info: {...this.state.info, time }});
+    ReactDOM.findDOMNode(this.refProceed.current).scrollIntoView();
+  }
+
   render() {
 
-        const { make, activeTab, selectedMake, selectedModel, tabOptions, selectedYear, phone, zip } = this.state;
+        const { make, activeTab, selectedMake, selectedModel, tabOptions, selectedYear, address, zip } = this.state;
         const makeClassname = make ? 'box-select selected' : 'box-select';
         let data = this.props[tabOptions[activeTab]];
         if (activeTab === 2) {
@@ -167,6 +194,21 @@ class RepairCar extends Component {
     const zipClassName = this.isZipValid() ? 'form-control' : 'form-control is-invalid';
 
 
+    const { showErrors, info: {date, time} } = this.state;
+    let errors = [];
+    if (showErrors) {
+      if (!date.length) {
+        errors.push('Please select a date')
+      }
+      if (!time.length) {
+        errors.push('Please select a time')
+      }
+    }
+    const timeClass = cx({
+      'schedule-content': true,
+      'hidden': this.state.info.date === '',
+    });
+
       if (activeTab === 3) {
           contentData = (
               <div className="col-md-12">
@@ -184,16 +226,33 @@ class RepairCar extends Component {
                     </div>
                   </div>
                   <div className="form-group row col-md-6">
+                    <label className="col-sm-2 col-form-label">Address</label>
+                    <div className="col-sm-10">
+                      <input value={this.state.address} onChange={e=>this.onInputChange('address',e)} required className="form-control"  placeholder="Address"/>
+                    </div>
+                  </div>
+                  <div className="form-group row col-md-6">
                     <label className="col-sm-2 col-form-label">Zip</label>
                     <div className="col-sm-10">
                       <input value={this.state.zip} onChange={e=>this.onInputChange('zip',e)} required className={zipClassName}  placeholder="Zip Code"/>
                     </div>
                   </div>
                   <div className="form-group row col-md-6">
-                    <label className="col-sm-2 col-form-label">Describe your issue</label>
+                    <label className="col-sm-12 col-form-label">Describe your issue</label>
                     <textarea value={this.state.description} onChange={e=>this.onInputChange('description',e)} className="form-control" id="validationTextarea"
                               placeholder="Describe your problem" required></textarea>
                   </div>
+                  <div className="schedule-content">
+                    <h3>1. Pick a Day</h3>
+                    <Month onChange={this.handleChangeMonth} />
+                  </div>
+                  <div className={timeClass}>
+                    <h3 ref={this.refProceed}>2. Pick a Time</h3>
+                    <Time onChange={this.handleChangeTime} selectedDate={this.state.info.date} selectedTime={this.state.info.time}/>
+                  </div>
+                  {
+                    errors.map(error=><div key={error} className="error">{error}</div>)
+                  }
                   <button onClick={this.onSubmit} type="submit" className="btn btn-primary" disabled={!this.state.submitEnabled} >Submit</button>
                 </form>
               </div>
