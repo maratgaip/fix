@@ -1,6 +1,4 @@
 import React, { Component, Fragment } from 'react';
-import { Link } from 'react-router-dom';
-
 import Header from '../Common/Header';
 import ReportMenu from './ReportMenu';
 import ReportDiagnostic from './ReportDiagnostic';
