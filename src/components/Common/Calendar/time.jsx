@@ -65,11 +65,6 @@ const times = [
   "4:00pm",
   "5:00pm",
   "6:00pm",
-  "7:00pm",
-  "8:00pm",
-  "9:00pm",
-  "10:00pm",
-  "11:00pm",
 ];
 
 export default class Calendar extends Component {

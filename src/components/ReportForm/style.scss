@@ -1,0 +1,48 @@
+.report{
+ padding: 20px;
+  .nav {
+   margin-top: 20px;
+   margin-bottom: 20px;
+  }
+}
+.advisor {
+ position: absolute;
+ right:0;
+ top:20px;
+ text-align: center;
+ img {
+  width: 80px;
+ }
+}
+.container {
+ position: relative;
+}
+
+.car-pictures {
+ width: 300px;
+ margin:10px;
+}
+.card-content {
+ display: inline-block;
+ width: 85%;
+ &.img {
+  width: 15%;
+  padding-right: 10px;
+ }
+}
+.quotes {
+ .quote-title {
+ text-decoration: underline;
+ }
+ margin:0;
+ padding: 0;
+  li {
+   display: inline-block;
+   list-style: none;
+   width: 25%;
+   text-align: center;
+  }
+}
+.card {
+ margin:10px 0;
+}

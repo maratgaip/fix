@@ -5,6 +5,7 @@ import { ConnectedRouter } from 'react-router-redux';
 import './App.css';
 import RepairCar from './components/Repair';
 import Report from './components/Report';
+import ReportForm from './components/ReportForm';
 import Chat from './components/Chat';
 
 const App = props => {
@@ -16,6 +17,7 @@ const App = props => {
         <Route path="/report/:reportId/:reportPage" component={Report} />
         <Route path="/diagnose" component={RepairCar} />
         <Route path="/chat" component={Chat} />
+        <Route path="/report-input" component={ReportForm} />
       </Switch>
     </ConnectedRouter>
   );
