@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Header from '../Common/Header';
 import ReportMenu from './ReportMenu';
 import ReportDiagnostic from './ReportDiagnostic';
+import ReportInspection from './ReportInspection';
 import AdvisorImg from './assets/baha.png';
 import './style.css';
 import {connect} from "react-redux";
@@ -19,7 +20,7 @@ class Report extends Component {
       const {reportId, reportPage} = this.props.match.params;
       let content = <ReportDiagnostic/>;
       if(reportPage === 'inspection'){
-        content = <div>Inspection Content</div>
+        content = <ReportInspection/>
       } else if (reportPage === 'history') {
         content = <div>History Content</div>
       }else if (reportPage === 'about') {

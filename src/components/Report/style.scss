@@ -1,3 +1,7 @@
+$good: yellow;
+$bad: red;
+$excellent: green;
+
 .report{
  padding: 20px;
   .nav {
@@ -43,6 +47,30 @@
    text-align: center;
   }
 }
+
+.evaluation { 
+  ul li {
+    list-style: none;
+    &::before {   
+      /* \2022 is the CSS Code/unicode for a disc */ 
+      content: "\2022";       
+      font-weight: bold; 
+      font-size: 70px;
+      line-height: 0;
+      vertical-align: middle;
+    }
+    &.good::before {
+      color: $good;
+    }
+    &.bad::before {
+      color: $bad;
+    }
+    &.excellent::before {
+      color:$excellent;
+    }
+  }
+} 
+
 .card {
  margin:10px 0;
 }
