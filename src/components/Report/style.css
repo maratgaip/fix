@@ -37,5 +37,21 @@
     width: 25%;
     text-align: center; }
 
+.evaluation ul li {
+  list-style: none; }
+  .evaluation ul li::before {
+    /* \2022 is the CSS Code/unicode for a disc */
+    content: "\2022";
+    font-weight: bold;
+    font-size: 70px;
+    line-height: 0;
+    vertical-align: middle; }
+  .evaluation ul li.good::before {
+    color: yellow; }
+  .evaluation ul li.bad::before {
+    color: red; }
+  .evaluation ul li.excellent::before {
+    color: green; }
+
 .card {
   margin: 10px 0; }
