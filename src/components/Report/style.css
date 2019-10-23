@@ -37,21 +37,35 @@
     width: 25%;
     text-align: center; }
 
-.evaluation ul li {
-  list-style: none; }
-  .evaluation ul li::before {
-    /* \2022 is the CSS Code/unicode for a disc */
-    content: "\2022";
-    font-weight: bold;
-    font-size: 70px;
-    line-height: 0;
-    vertical-align: middle; }
-  .evaluation ul li.good::before {
-    color: yellow; }
-  .evaluation ul li.bad::before {
-    color: red; }
-  .evaluation ul li.excellent::before {
-    color: green; }
+.inspection {
+  align-content: space-around; }
+  .inspection ul li {
+    list-style: none; }
+    .inspection ul li::before {
+      content: "\2022";
+      font-weight: bold;
+      font-size: 70px;
+      line-height: 0;
+      vertical-align: middle; }
+    .inspection ul li.good::before {
+      color: yellow; }
+    .inspection ul li.bad::before {
+      color: red; }
+    .inspection ul li.excellent::before {
+      color: green; }
+    .inspection ul li.div {
+      margin-bottom: 10px; }
+  .inspection .inspection-cat {
+    width: 50%;
+    float: left;
+    box-sizing: border-box; }
 
 .card {
   margin: 10px 0; }
+
+.advisor-content .card-img-top {
+  width: 100px; }
+
+.advisor-content .card-body {
+  position: absolute;
+  left: 100px; }

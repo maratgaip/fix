@@ -23,37 +23,54 @@ class ReportDiagnostic extends Component {
   }
 
   render() {
-    const { quotes } = this.state
+    const {
+      reportedIssue, rootCause, recommendation, pricePartsDescription, pricePartsAmountFrom, pricePartsAmountTo,
+      priceLaborDescription, priceLaborAmountFrom, priceLaborAmountTo, photos, quotes
+    } = this.props.data;
     return (
           <div>
             <h3>Issue Diagnostic:</h3>
-            <p>
-              <strong>Reported Issue:</strong> when i hit brakes on my car (especially down the hill or on high speeds), my steering wheel starts shaking as well as my car.
-            </p>
-            <p>
-              <strong>Root Cause Analysis:</strong>  we have disassembled right wheel and identified that your rotor is warped. This usually happens due to long rides in hills when your brake pads overheat the rotors.
-            </p>
-            <p>
-              <strong>Recommendation:</strong>  either resurface the existing rotor, or buy a new one. Labor cost of resurfacing a rotor will be the same as buying a new one. Recommendation is to buy a new rotor.
-            </p>
-            <p>
-              <strong>Price Range:</strong>
-              <ul>
-                <li>$300 new rotors for Toyota Camry 2011</li>
-                <li>$100 labor and installation </li>
-              </ul>
-            </p>
-            <p>
-              <strong>Photos:</strong><br/>
-              <img className="car-pictures" src={Photo1} />
-              <img className="car-pictures" src={Photo1} />
-              <img className="car-pictures" src={Photo1} />
-            </p>
+            <div className="card">
+              <div className="card-body">
+                <p className="card-text"><strong>Reported Issue:</strong> {reportedIssue}</p>
+              </div>
+            </div>
+            <div className="card">
+              <div className="card-body">
+                <p className="card-text"><strong>Root Cause:</strong> {rootCause}</p>
+              </div>
+            </div>
+            <div className="card">
+              <div className="card-body">
+                <p className="card-text"><strong>Recommendation:</strong> {recommendation}</p>
+              </div>
+            </div>
+            <div className="card">
+              <div className="card-body">
+                <p className="card-text"><strong>Price Range:</strong>
+                  <ul>
+                    <li>{pricePartsDescription}: ${pricePartsAmountFrom} - ${pricePartsAmountTo}</li>
+                    <li>{priceLaborDescription}: ${priceLaborAmountFrom} - ${priceLaborAmountTo}</li>
+                  </ul>
+                </p>
+              </div>
+            </div>
+            <div className="card">
+              <div className="card-body">
+                <p className="card-text"><strong>Photos</strong>
+                  {
+                    photos.map(photo=>{
+                      <img className="car-pictures" src={photo.url} alt={photo.name} title={photo.name} />
+                    })
+                  }
+                </p>
+              </div>
+            </div>
             <p>
               <strong>Quote from mechanics nearby:</strong><br/>
               {
                 quotes.map(item=>{
-                  const { address, name, price, availability } =  item;
+                  const { address, name, price, availability, photo } =  item;
                   return (
                     <div className="card">
                       <div className="card-body">

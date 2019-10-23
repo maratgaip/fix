@@ -48,12 +48,12 @@ $excellent: green;
   }
 }
 
-.evaluation { 
+.inspection {
   ul li {
     list-style: none;
-    &::before {    
-      content: "\2022";       
-      font-weight: bold; 
+    &::before {
+      content: "\2022";
+      font-weight: bold;
       font-size: 70px;
       line-height: 0;
       vertical-align: middle;
@@ -67,9 +67,27 @@ $excellent: green;
     &.excellent::before {
       color:$excellent;
     }
+    &.div {
+      margin-bottom: 10px;
+    }
   }
-} 
+  align-content: space-around;
+  .inspection-cat {
+    width: 50%;
+    float: left;
+    box-sizing: border-box;
+  }
+}
 
 .card {
  margin:10px 0;
+}
+.advisor-content {
+  .card-img-top {
+    width: 100px;
+  }
+  .card-body {
+    position: absolute;
+    left: 100px;
+  }
 }
