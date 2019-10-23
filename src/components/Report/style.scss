@@ -51,8 +51,7 @@ $excellent: green;
 .evaluation { 
   ul li {
     list-style: none;
-    &::before {   
-      /* \2022 is the CSS Code/unicode for a disc */ 
+    &::before {    
       content: "\2022";       
       font-weight: bold; 
       font-size: 70px;

@@ -63,44 +63,6 @@ class ReportInspection extends Component {
                     )
                 })
             }
-            <h3>Dash</h3>
-            <ul>
-                <li>warning lights: none</li>
-            </ul>
-            <h3>Tires</h3>
-            <ul>
-                <li className={this.state.level}>pressure driver-front: {this.state.pressuredriverfront }psi</li>
-                <li>pressure passenger-front: 32psi</li>
-                <li>pressure driver-rear: 32psi</li>
-                <li>pressure passenger-rear: 32psi</li>
-            </ul>
-            <ul>
-                <li>treading driver-front: 3/32 - 6/32"</li>
-                <li>treading passenger-front: 3/32 - 6/32"</li>
-                <li className="good">treading driver-rear: 2/32 - 4/32"</li>
-                <li className="good">treading passenger-rear: 2/32 - 4/32"</li>
-            </ul>
-            <h3>Fluids</h3>  
-            <ul>
-                <li>engine oil: good</li>
-                <li>break fluid: good</li>
-                <li>coolant: good</li>
-                <li>power steering-fluid: good</li>
-                <li>washer fluid: good</li>
-            </ul>
-            <h3>Breaking System</h3>
-            <ul>
-                <li>rotor driver-front: no issues</li>
-                <li className={this.state.level}>rotor passenger-front: warped</li>
-                <li>rotor driver-rear: no issues</li>
-                <li>rotor passenger-rear: no issues</li>
-            </ul>
-            <ul>
-                <li>pads driver-front: 80%(>6mm)</li>
-                <li>pads passenger-front: 80%(>6mm)</li>
-                <li>pads driver-rear: 80%(>6mm)</li>
-                <li>pads passenger-rear: 80%(>6mm)</li>
-            </ul>
           </div>
     );
   }
