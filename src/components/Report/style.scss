@@ -97,6 +97,15 @@ $excellent: green;
     position: absolute;
     left: 100px;
   }
+  @media screen and (max-width: 700px) {
+    .card-body {
+      position: static;
+    }
+    .card-img-top {
+      margin: 0 auto;
+      margin-top: 10px;
+    }
+  }
 }
 .diagnostic-content .card-title, .history-content .card-title {
   margin-bottom: -10px;

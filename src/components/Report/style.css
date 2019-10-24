@@ -77,6 +77,13 @@
   position: absolute;
   left: 100px; }
 
+@media screen and (max-width: 700px) {
+  .advisor-content .card-body {
+    position: static; }
+  .advisor-content .card-img-top {
+    margin: 0 auto;
+    margin-top: 10px; } }
+
 .diagnostic-content .card-title, .history-content .card-title {
   margin-bottom: -10px; }
 
