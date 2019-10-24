@@ -249,7 +249,7 @@ class Report extends Component {
               <img src={AdvisorImg} />
             </div>
           </div>
-          <ReportMenu activePage={reportPage}/>
+          <ReportMenu activePage={reportPage} reportId={reportId}/>
           { content }
         </div>
       </Fragment>

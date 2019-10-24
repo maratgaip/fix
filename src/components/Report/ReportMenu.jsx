@@ -8,12 +8,13 @@ class ReportMenu extends Component {
 
   constructor(props){
     super(props);
+    const {reportId} = this.props;
     this.state = {
       data: [
-        {id:'diagnostic', title: 'Issue Diagnostic', url:'/report/10/diagnostic'},
-        {id:'inspection',title: 'Inspection', url:'/report/10/inspection'},
-        {id:'history',title: 'History', url:'/report/10/history'},
-        {id:'about',title: 'About', url:'/report/10/about'},
+        {id:'diagnostic', title: 'Issue Diagnostic', url:`/report/${reportId}/diagnostic`},
+        {id:'inspection',title: 'Inspection', url:`/report/${reportId}/inspection`},
+        {id:'history',title: 'History', url:`/report/${reportId}/history`},
+        {id:'about',title: 'About', url:`/report/${reportId}/about`},
       ]
     }
   }
