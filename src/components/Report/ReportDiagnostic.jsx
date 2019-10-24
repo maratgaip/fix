@@ -5,28 +5,16 @@ class ReportDiagnostic extends Component {
   constructor(props){
     super(props);
     this.state = {
-      quotes: [
-        {
-          name: 'Omurbek', address:'81 Pioneer Way, Mountain View, CA 94040',
-          price: 300, availability: 'Today(October 30) at 1pm'
-        },
-        {
-          name: 'Kuttubek', address:'345 San Marino, North Hollywood, CA 94040',
-          price: 300, availability: 'Today(October 30) at 5pm'
-        },
-        {
-          name: 'Seytech', address:'123 Sey street, Los Angeles, CA 94040',
-          price: 300, availability: 'Today(October 30) at 3pm'
-        }
-      ]
     }
   }
 
   render() {
-    const {
+    let {
       reportedIssue, rootCause, recommendation, pricePartsDescription, pricePartsAmountFrom, pricePartsAmountTo,
       priceLaborDescription, priceLaborAmountFrom, priceLaborAmountTo, photos, quotes
     } = this.props.data;
+    photos = photos || [];
+    quotes = quotes || [];
     return (
           <div>
             <h3>Issue Diagnostic:</h3>

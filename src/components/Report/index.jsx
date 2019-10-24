@@ -208,36 +208,21 @@ class Report extends Component {
     componentDidMount() {
       const {reportId} = this.props.match.params;
       const reportUrl = `${reportApiUrl}${reportId}`;
-      console.log('reportUrl',reportUrl)
-      fetch(reportUrl,{
-        method: 'get',
-        //mode: 'no-cors',
-      })
+      fetch(reportUrl)
         .then(response=>{
-
-          return response.text()
           return response.json()
-
-
-          console.log(JSON.parse(response.body))
-          return response.text().then(function(text) {
-            debugger
-            return text ? JSON.parse(text) : {}
-          })
         })
         .then(report=>{
-          debugger
           this.setState({report,loaded:true})
         })
         .catch(err=>{
-          debugger
           this.setState({loaded:true,report:reportSampleData})
         })
     }
 
   render() {
       const {reportId, reportPage} = this.props.match.params;
-      const { report: {info, diagnostic, inspection, history, advisor, loaded}} = this.state;
+      const { report: {info, diagnostic, inspection, history, advisor},loaded} = this.state;
       let content = <ReportDiagnostic data={diagnostic}/>;
       if(reportPage === 'inspection'){
         content = <ReportInspection data={inspection}/>
@@ -246,7 +231,6 @@ class Report extends Component {
       }else if (reportPage === 'about') {
         content = <ReportAdvisor data={advisor} />
       }
-
       if(!loaded){
         return null
       }
