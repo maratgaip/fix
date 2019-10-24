@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 
 import './style.css';
 
@@ -14,13 +13,16 @@ class ReportHistory extends Component {
   render() {
     const {data} = this.props;
     return (
-          <div>
+          <div className="history-content">
             {
               data.map(({event,time})=>{
                 return (
-                  <div className="card">
-                    <div className="card-body">
-                      <p className="card-text"><strong>{event}:</strong> {time}</p>
+                  <div>
+                    <div className="card-title"><strong>{event}:</strong></div>
+                    <div className="card">
+                      <div className="card-body">
+                        <p className="card-text"> {time}</p>
+                      </div>
                     </div>
                   </div>
                 )

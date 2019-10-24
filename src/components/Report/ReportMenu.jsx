@@ -28,7 +28,7 @@ class ReportMenu extends Component {
               data.map(menu=>{
                 const className = activePage === menu.id ? 'nav-link active' : 'nav-link';
                 return (
-                  <li className="nav-item">
+                  <li key={menu.id} className="nav-item">
                     <Link className={className} to={menu.url}>{menu.title}</Link>
                   </li>
                 )

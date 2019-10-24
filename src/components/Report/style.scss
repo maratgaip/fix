@@ -17,6 +17,9 @@ $excellent: green;
  img {
   width: 80px;
  }
+  @media screen and (max-width: 700px) {
+    position: static !important;
+  }
 }
 .container {
  position: relative;
@@ -76,6 +79,10 @@ $excellent: green;
     width: 50%;
     float: left;
     box-sizing: border-box;
+    @media screen and (max-width: 700px) {
+      width: 100%;
+      float: none;
+    }
   }
 }
 
@@ -89,5 +96,13 @@ $excellent: green;
   .card-body {
     position: absolute;
     left: 100px;
+  }
+}
+.diagnostic-content .card-title, .history-content .card-title {
+  margin-bottom: -10px;
+}
+.nav-tabs {
+  @media screen and (max-width: 700px) {
+    font-size: 11px;
   }
 }

@@ -534,7 +534,6 @@ const rootReducer = (state = initialState, payload) => {
     }
     default:
     {
-      console.log(state)
       return state
     }
 

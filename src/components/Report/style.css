@@ -11,6 +11,9 @@
   text-align: center; }
   .advisor img {
     width: 80px; }
+  @media screen and (max-width: 700px) {
+    .advisor {
+      position: static !important; } }
 
 .container {
   position: relative; }
@@ -59,6 +62,10 @@
     width: 50%;
     float: left;
     box-sizing: border-box; }
+    @media screen and (max-width: 700px) {
+      .inspection .inspection-cat {
+        width: 100%;
+        float: none; } }
 
 .card {
   margin: 10px 0; }
@@ -69,3 +76,10 @@
 .advisor-content .card-body {
   position: absolute;
   left: 100px; }
+
+.diagnostic-content .card-title, .history-content .card-title {
+  margin-bottom: -10px; }
+
+@media screen and (max-width: 700px) {
+  .nav-tabs {
+    font-size: 11px; } }

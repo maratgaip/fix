@@ -16,26 +16,29 @@ class ReportDiagnostic extends Component {
     photos = photos || [];
     quotes = quotes || [];
     return (
-          <div>
-            <h3>Issue Diagnostic:</h3>
+          <div className="diagnostic-content">
+            <div className="card-title"><strong>Reported Issue:</strong></div>
             <div className="card">
               <div className="card-body">
-                <p className="card-text"><strong>Reported Issue:</strong> {reportedIssue}</p>
+                <p className="card-text">{reportedIssue}</p>
               </div>
             </div>
+            <div className="card-title"><strong>Root Cause:</strong></div>
             <div className="card">
               <div className="card-body">
-                <p className="card-text"><strong>Root Cause:</strong> {rootCause}</p>
+                <p className="card-text">{rootCause}</p>
               </div>
             </div>
+            <div className="card-title"><strong>Recommendation:</strong></div>
             <div className="card">
               <div className="card-body">
-                <p className="card-text"><strong>Recommendation:</strong> {recommendation}</p>
+                <p className="card-text">{recommendation}</p>
               </div>
             </div>
+            <div className="card-title"><strong>Price Range:</strong></div>
             <div className="card">
               <div className="card-body">
-                <p className="card-text"><strong>Price Range:</strong>
+                <p className="card-text">
                   <ul>
                     <li>{pricePartsDescription}: ${pricePartsAmountFrom} - ${pricePartsAmountTo}</li>
                     <li>{priceLaborDescription}: ${priceLaborAmountFrom} - ${priceLaborAmountTo}</li>
@@ -43,9 +46,10 @@ class ReportDiagnostic extends Component {
                 </p>
               </div>
             </div>
+            <div className="card-title"><strong>Photos:</strong></div>
             <div className="card">
               <div className="card-body">
-                <p className="card-text"><strong>Photos</strong>
+                <p className="card-text">
                   {
                     photos.map(photo=>{
                       <img className="car-pictures" src={photo.url} alt={photo.name} title={photo.name} />
@@ -55,7 +59,7 @@ class ReportDiagnostic extends Component {
               </div>
             </div>
             <p>
-              <strong>Quote from mechanics nearby:</strong><br/>
+              <div className="card-title"><strong>Quote from mechanics nearby:</strong></div>
               {
                 quotes.map(item=>{
                   const { address, name, price, availability, photo } =  item;
