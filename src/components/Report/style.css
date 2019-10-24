@@ -1,8 +1,13 @@
 .report {
-  padding: 20px; }
+  padding: 20px;
+  padding-bottom: 100px; }
   .report .nav {
     margin-top: 20px;
     margin-bottom: 20px; }
+  .report.create .input-group {
+    margin: 10px 0; }
+  .report.create .input-group-prepend .input-group-text {
+    width: 170px; }
 
 .advisor {
   position: absolute;
@@ -16,7 +21,8 @@
       position: static !important; } }
 
 .container {
-  position: relative; }
+  position: relative;
+  margin-bottom: 100px; }
 
 .car-pictures {
   width: 300px;
@@ -81,12 +87,16 @@
   .advisor-content .card-body {
     position: static; }
   .advisor-content .card-img-top {
-    margin: 0 auto;
-    margin-top: 10px; } }
+    display: none; } }
 
 .diagnostic-content .card-title, .history-content .card-title {
   margin-bottom: -10px; }
 
 @media screen and (max-width: 700px) {
   .nav-tabs {
-    font-size: 11px; } }
+    font-size: 11px;
+    font-weight: bold; } }
+
+.inspection-guide li {
+  display: inline-block;
+  width: 30%; }

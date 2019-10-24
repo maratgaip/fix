@@ -18,7 +18,7 @@ const App = props => {
         <Route path="/report/:reportId/:reportPage" component={withTracker(Report)} />
         <Route path="/diagnose" component={withTracker(RepairCar)} />
         <Route path="/chat" component={withTracker(Chat)} />
-        <Route path="/report-input" component={withTracker(ReportForm)} />
+        <Route path="/create-report" component={withTracker(ReportForm)} />
       </Switch>
     </ConnectedRouter>
   );

@@ -58,6 +58,12 @@ class ReportInspection extends Component {
     const { data } = this.props;
     return (
           <div className="inspection">
+            <ul className="inspection-guide">
+              <li className='excellent'>Checked and OK</li>
+              <li className='good'>May Require Attention</li>
+              <li className='bad'>Requires Immediate Attention</li>
+            </ul>
+            <hr/>
               {
                 mapData.map(item=> {
                   const classData = `${item.category.toLowerCase()} inspection-cat`;

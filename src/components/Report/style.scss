@@ -9,6 +9,14 @@ padding-bottom: 100px;
    margin-top: 20px;
    margin-bottom: 20px;
   }
+  &.create {
+    .input-group {
+      margin: 10px 0;
+    }
+    .input-group-prepend .input-group-text{
+      width: 170px;
+    }
+  }
 }
 .advisor {
  position: absolute;
@@ -24,6 +32,7 @@ padding-bottom: 100px;
 }
 .container {
  position: relative;
+  margin-bottom: 100px;
 }
 
 .car-pictures {
@@ -103,8 +112,7 @@ padding-bottom: 100px;
       position: static;
     }
     .card-img-top {
-      margin: 0 auto;
-      margin-top: 10px;
+        display: none;
     }
   }
 }
@@ -114,5 +122,13 @@ padding-bottom: 100px;
 .nav-tabs {
   @media screen and (max-width: 700px) {
     font-size: 11px;
+    font-weight: bold;
+  }
+}
+
+.inspection-guide {
+  li {
+    display: inline-block;
+    width: 30%;
   }
 }
