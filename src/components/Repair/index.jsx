@@ -11,6 +11,7 @@ import {connect} from "react-redux";
 import {actions} from "../../redux/reducer";
 
 const newPostJobURL = 'https://fixinity-api-staging.herokuapp.com/api/v1/jobRequest/new';
+// const newPostJobURL = 'http://localhost:1337/api/v1/jobRequest/new';
 const dateFormat = "MM/DD/YYYY";
 
 class RepairCar extends Component {
