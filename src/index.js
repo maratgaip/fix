@@ -12,7 +12,7 @@ import App from './App';
 import Saga from './redux/saga';
 import reducer from './redux/reducer';
 
-ReactGA.initialize('UA-123240055-1'); //Unique Google Analytics tracking number
+ReactGA.initialize('UA-150846549-1'); //Unique Google Analytics tracking number
 
 // create middlewares
 const history = createBrowserHistory();
