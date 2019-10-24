@@ -4,12 +4,17 @@ import serialize from 'form-serialize'
 import Header from '../Common/Header';
 import './style.css';
 
+const createdReportUrl = 'https://www.fixinity.com/report/';
+const jobRequestUrl = 'https://fixinity-api-staging.herokuapp.com/jobRequest/';
+const createReportUrl = 'https://fixinity-api-staging.herokuapp.com/api/v1/report/new';
+
 class ReportForm extends Component {
     constructor(props){
         super(props);
         this.state = {
           loaded:false,
           info:{},
+          err:[],
           inspection:{}
         }
     }
@@ -21,7 +26,7 @@ class ReportForm extends Component {
         if(!value.length){
           return
         }
-        const url = `https://fixinity-api-staging.herokuapp.com/jobRequest/${value}`;
+        const url = `${jobRequestUrl}${value}`;
         fetch(url)
           .then(response=>response.json())
           .then(info=>{
@@ -33,24 +38,38 @@ class ReportForm extends Component {
       }
     }
 
+  onReportSend = () => {
+      // send report to a customer
+  }
+
     onSubmit = e => {
-        const data = serialize(this.form,{hash: true, empty: true});
-        console.log(data)
+      this.setState({err:[]})
+      let data = serialize(this.form,{hash: true, empty: true});
+      const keys = Object.keys(data);
+        for (let i=0;i<keys.length;i++){
+          if(keys[i].includes('Status') || keys[i].includes('Amount')){
+            data[keys[i]] = Number(data[keys[i]]);
+          }
+        }
       e.preventDefault();
-          const url = 'https://fixinity-api-staging.herokuapp.com/api/v1/report/new';
-      fetch(url,{
+      fetch(createReportUrl,{
         method: 'POST',
-        mode: 'no-cors',
         body: JSON.stringify(data),
         headers:{ 'Content-Type': 'application/json'}
       })
-        .then(() => {
-          this.setState({isJobPosted: true})
-          console.log('done')
+        .then((data) => data.json())
+        .then((data) => {
+          if(data.status === 'ok'){
+            const reportUrl = `${createdReportUrl}${this.state.info.shortUrlCode}/diagnostic`;
+            this.setState({isReportCreated: true, reportUrl})
+          } else {
+            this.setState({err: data.problems})
+          }
+
         })
         .catch((err) => {
           console.log('eee', err)
-          this.setState({isJobPosted: true, err: err})
+          this.setState({isReportCreated: true, err: err})
           console.log('err')
         });
       }
@@ -58,49 +77,56 @@ class ReportForm extends Component {
   render() {
 
     const {make, model, year, name, description, phone} = this.state.info;
-    const {loaded} = this.state;
+    const {loaded,isReportCreated, reportUrl, err} = this.state;
     let infoContent = null;
+    let data = null;
     if(loaded) {
-      infoContent = make && model ? (
-        <table className="table table-sm">
-          <tbody>
-          <tr>
-            <td>Car</td>
-            <td>{make} {model} {year}</td>
-          </tr>
-          <tr>
-            <td>Name</td>
-            <td>{name}</td>
-          </tr>
-          <tr>
-            <td>Phone</td>
-            <td>{phone}</td>
-          </tr>
-          <tr>
-            <td>Description</td>
-            <td>{description}</td>
-          </tr>
-          </tbody>
-        </table>
-      ) : (
-        <div className="alert alert-danger" role="alert">
-          Job Request ID not found. Please enter a valid job ID
-        </div>
-      )
-    }
-    return (
-      <Fragment>
-        <Header />
-        <div className="container report create">
-          <form ref={form => this.form = form}>
+      if(make && model){
+        data = (
+          <div>
             <div className="card">
               <div className="card-body">
                 <h5 className="card-title">Info</h5>
                 <div className="input-group">
-                  <div className="input-group-prepend"><span className="input-group-text">Job Request ID</span></div>
-                  <input type="text" onChange={e=>this.onInputChange('jobRequestId',e)} className="form-control" name="jobRequestId" placeholder="Enter Job Request ID"/>
+                  <div className="input-group-prepend"><span className="input-group-text">Odometer</span></div>
+                  <input type="text" className="form-control" name="odometer" placeholder="Enter Odometer"/>
                 </div>
-                {infoContent}
+                <div className="input-group">
+                  <div className="input-group-prepend"><span className="input-group-text">VIN</span></div>
+                  <input type="text" className="form-control" name="vin" placeholder="Enter VIN"/>
+                </div>
+                <div className="input-group">
+                  <div className="input-group-prepend"><span className="input-group-text">Issue</span></div>
+                  <input type="text" className="form-control" name="reportedIssue" placeholder="Enter Issue"/>
+                </div>
+                <div className="input-group">
+                  <div className="input-group-prepend"><span className="input-group-text">Root Cause</span></div>
+                  <input type="text" className="form-control" name="rootCause" placeholder="Enter Root Cause"/>
+                </div>
+                <div className="input-group">
+                  <div className="input-group-prepend"><span className="input-group-text">Recommendation</span></div>
+                  <textarea className="form-control" name="recommendation" placeholder="Recommendation"/>
+                </div>
+                <div className="input-group">
+                  <div className="input-group-prepend"><span className="input-group-text">Part Desc</span></div>
+                  <input type="text" className="form-control" name="pricePartsDescription" placeholder="Enter Part Description"/>
+                </div>
+                <div className="input-group">
+                  <div className="input-group-prepend"><span className="input-group-text">Part Price</span></div>
+                  <input type="text" className="form-control" name="pricePartsAmountFrom" placeholder="Enter Part Price From"/>
+                  <div className="input-group-append"><span className="input-group-text">to</span></div>
+                  <input type="text" className="form-control" name="pricePartsAmountTo" placeholder="Enter Part Price To"/>
+                </div>
+                <div className="input-group">
+                  <div className="input-group-prepend"><span className="input-group-text">Labor Desc</span></div>
+                  <input type="text" className="form-control" name="priceLaborDescription" placeholder="Enter Labor Description"/>
+                </div>
+                <div className="input-group">
+                  <div className="input-group-prepend"><span className="input-group-text">Labor Price</span></div>
+                  <input type="text" className="form-control" name="priceLaborAmountFrom" placeholder="Enter Labor Price From"/>
+                  <div className="input-group-append"><span className="input-group-text">to</span></div>
+                  <input type="text" className="form-control" name="priceLaborAmountTo" placeholder="Enter Labor Price To"/>
+                </div>
               </div>
             </div>
             <div className="card">
@@ -750,12 +776,12 @@ class ReportForm extends Component {
                 </div>
               </div>
             </div><div className="card">
-              <div className="card-body">
-                <h5 className="card-title">Battery</h5>
-                <div className="input-group">
-                  <div className="input-group-prepend"><span className="input-group-text">Corrosion</span></div>
-                  <input type="text" onChange={e=>this.onInputChange('corrosionValue',e)} className="form-control" name="corrosionValue" placeholder="Enter Data"/>
-                  <div className="input-group-append"><span className="input-group-text">
+            <div className="card-body">
+              <h5 className="card-title">Battery</h5>
+              <div className="input-group">
+                <div className="input-group-prepend"><span className="input-group-text">Corrosion</span></div>
+                <input type="text" onChange={e=>this.onInputChange('corrosionValue',e)} className="form-control" name="corrosionValue" placeholder="Enter Data"/>
+                <div className="input-group-append"><span className="input-group-text">
                     <div className="custom-control custom-radio custom-control-inline">
                       <input type="radio" value="1" id="corrosionStatus1" name="corrosionStatus"
                              className="custom-control-input"/>
@@ -771,11 +797,11 @@ class ReportForm extends Component {
                              className="custom-control-input"/>
                         <label className="custom-control-label" htmlFor="corrosionStatus3">Bad</label>
                     </div></span>
-                  </div>
-                </div><div className="input-group">
-                  <div className="input-group-prepend"><span className="input-group-text">Case Leaking</span></div>
-                  <input type="text" onChange={e=>this.onInputChange('caseLeakingValue',e)} className="form-control" name="caseLeakingValue" placeholder="Enter Data"/>
-                  <div className="input-group-append"><span className="input-group-text">
+                </div>
+              </div><div className="input-group">
+              <div className="input-group-prepend"><span className="input-group-text">Case Leaking</span></div>
+              <input type="text" onChange={e=>this.onInputChange('caseLeakingValue',e)} className="form-control" name="caseLeakingValue" placeholder="Enter Data"/>
+              <div className="input-group-append"><span className="input-group-text">
                     <div className="custom-control custom-radio custom-control-inline">
                       <input type="radio" value="1" id="caseLeakingStatus1" name="caseLeakingStatus"
                              className="custom-control-input"/>
@@ -791,16 +817,16 @@ class ReportForm extends Component {
                              className="custom-control-input"/>
                         <label className="custom-control-label" htmlFor="caseLeakingStatus3">Bad</label>
                     </div></span>
-                  </div>
-                </div>
               </div>
-            </div><div className="card">
-              <div className="card-body">
-                <h5 className="card-title">Dash</h5>
-                <div className="input-group">
-                  <div className="input-group-prepend"><span className="input-group-text">Warning Lights</span></div>
-                  <input type="text" onChange={e=>this.onInputChange('warningLightValue',e)} className="form-control" name="warningLightValue" placeholder="Enter Data"/>
-                  <div className="input-group-append"><span className="input-group-text">
+            </div>
+            </div>
+          </div><div className="card">
+            <div className="card-body">
+              <h5 className="card-title">Dash</h5>
+              <div className="input-group">
+                <div className="input-group-prepend"><span className="input-group-text">Warning Lights</span></div>
+                <input type="text" onChange={e=>this.onInputChange('warningLightValue',e)} className="form-control" name="warningLightValue" placeholder="Enter Data"/>
+                <div className="input-group-append"><span className="input-group-text">
                     <div className="custom-control custom-radio custom-control-inline">
                       <input type="radio" value="1" id="warningLightStatus1" name="warningLightStatus"
                              className="custom-control-input"/>
@@ -816,11 +842,71 @@ class ReportForm extends Component {
                              className="custom-control-input"/>
                         <label className="custom-control-label" htmlFor="warningLightStatus3">Bad</label>
                     </div></span>
-                  </div>
                 </div>
               </div>
             </div>
-            <button onClick={this.onSubmit} type="submit" className="btn btn-primary">Create a Report</button>
+          </div>
+          </div>
+        )
+        infoContent = (
+          <table className="table table-sm">
+            <tbody>
+            <tr>
+              <td>Car</td>
+              <td>{make} {model} {year}</td>
+            </tr>
+            <tr>
+              <td>Name</td>
+              <td>{name}</td>
+            </tr>
+            <tr>
+              <td>Phone</td>
+              <td>{phone}</td>
+            </tr>
+            <tr>
+              <td>Description</td>
+              <td>{description}</td>
+            </tr>
+            </tbody>
+          </table>
+
+        )
+      } else {
+        infoContent = (
+          <div className="alert alert-danger" role="alert">
+            Job Request ID not found. Please enter a valid job ID
+          </div>
+        )
+      }
+    }
+    const errContent = !err.length ? null : (
+      <div>
+        {err.map(e=><div className="alert alert-danger" role="alert">{e}</div>)}
+      </div>
+    )
+    console.log(errContent)
+    return (
+      <Fragment>
+        <Header />
+        <div className="container report create">
+          <form ref={form => this.form = form}>
+            <div className="card">
+              <div className="card-body">
+                <div className="input-group">
+                  <div className="input-group-prepend"><span className="input-group-text">Job Request ID</span></div>
+                  <input type="text" onChange={e=>this.onInputChange('jobRequestId',e)} className="form-control" name="jobRequestId" placeholder="Enter Job Request ID"/>
+                </div>
+                {infoContent}
+              </div>
+            </div>
+            {data}
+            { errContent }
+            <div className="report-btns">
+              {loaded && <button onClick={this.onSubmit} type="submit" className="btn btn-primary">Create a Report</button>}
+              {isReportCreated && <a target="_blank" href={reportUrl} className="btn btn-secondary">Check the Report</a>}
+              {loaded && isReportCreated && !err.length && <button onClick={this.onReportSend} className="btn btn-success">Send Report to a Customer</button>}
+            </div>
+
           </form>
         </div>
       </Fragment>
