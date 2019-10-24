@@ -8,12 +8,30 @@ class ReportForm extends Component {
     constructor(props){
         super(props);
         this.state = {
+          loaded:false,
           info:{},
           inspection:{}
         }
     }
 
-    onInputChange = (input, e) => {}
+    onInputChange = (input, e) => {
+      if(input === 'jobRequestId'){
+        this.setState({loaded:false, info:{}});
+        const { value } = e.target;
+        if(!value.length){
+          return
+        }
+        const url = `https://fixinity-api-staging.herokuapp.com/jobRequest/${value}`;
+        fetch(url)
+          .then(response=>response.json())
+          .then(info=>{
+            this.setState({info,loaded:true})
+          })
+          .catch(err=>{
+            this.setState({loaded:true})
+          })
+      }
+    }
 
     onSubmit = e => {
         const data = serialize(this.form,{hash: true, empty: true});
@@ -39,12 +57,41 @@ class ReportForm extends Component {
 
   render() {
 
-
+    const {make, model, year, name, description, phone} = this.state.info;
+    const {loaded} = this.state;
+    let infoContent = null;
+    if(loaded) {
+      infoContent = make && model ? (
+        <table className="table table-sm">
+          <tbody>
+          <tr>
+            <td>Car</td>
+            <td>{make} {model} {year}</td>
+          </tr>
+          <tr>
+            <td>Name</td>
+            <td>{name}</td>
+          </tr>
+          <tr>
+            <td>Phone</td>
+            <td>{phone}</td>
+          </tr>
+          <tr>
+            <td>Description</td>
+            <td>{description}</td>
+          </tr>
+          </tbody>
+        </table>
+      ) : (
+        <div className="alert alert-danger" role="alert">
+          Job Request ID not found. Please enter a valid job ID
+        </div>
+      )
+    }
     return (
       <Fragment>
         <Header />
         <div className="container report create">
-          <h3>Inspection Report for</h3>
           <form ref={form => this.form = form}>
             <div className="card">
               <div className="card-body">
@@ -53,6 +100,7 @@ class ReportForm extends Component {
                   <div className="input-group-prepend"><span className="input-group-text">Job Request ID</span></div>
                   <input type="text" onChange={e=>this.onInputChange('jobRequestId',e)} className="form-control" name="jobRequestId" placeholder="Enter Job Request ID"/>
                 </div>
+                {infoContent}
               </div>
             </div>
             <div className="card">
