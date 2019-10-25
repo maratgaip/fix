@@ -40,8 +40,8 @@ class Report extends Component {
 
   render() {
       const {reportId, reportPage} = this.props.match.params;
-      const { report: {info, diagnostic, inspection, history, advisor},loaded} = this.state;
-      let content = <ReportDiagnostic data={diagnostic}/>;
+      const { report: {info, diagnostic, inspection, history, advisor, job},loaded} = this.state;
+      let content = <ReportDiagnostic data={diagnostic} job={job}/>;
       if(reportPage === 'inspection'){
         content = <ReportInspection data={inspection}/>
       } else if (reportPage === 'history') {
