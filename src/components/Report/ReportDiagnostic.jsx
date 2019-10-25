@@ -322,9 +322,12 @@ class ReportDiagnostic extends Component {
           {
             quotes.map((item, ind)=>{
               const { mechanic, repairs, soonestAvailableDateTime, photo, id } =  item;
-              const quotedPrice = repairs.reduce((acc,cum)=>{
-                return acc+cum.price
-              },0);
+              let quotedPrice = 0;
+              repairs.forEach(rep=>{
+                if(rep.isReportedByConsumer){
+                  quotedPrice += rep.price
+                }
+              });
               const seeDetailsBtn = selectedQuoteId === null || selectedQuoteId == id ? (
                 <button onClick={()=>this.openQuote(ind)} type="button" className="btn btn-primary" data-toggle="modal"
                         data-target=".bd-example-modal-lg">See Details</button>
