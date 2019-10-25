@@ -43,8 +43,7 @@
   .quotes li {
     display: inline-block;
     list-style: none;
-    width: 25%;
-    text-align: center; }
+    width: 25%; }
 
 .inspection {
   align-content: space-around; }
@@ -100,3 +99,22 @@
 .inspection-guide li {
   display: inline-block;
   width: 30%; }
+
+.inspection-colors.good::before {
+  color: yellow; }
+
+.inspection-colors.bad::before {
+  color: red; }
+
+.inspection-colors.excellent::before {
+  color: green; }
+
+.inspection-colors::before {
+  content: "\2022";
+  font-weight: bold;
+  font-size: 70px;
+  line-height: 0;
+  vertical-align: middle; }
+
+.modal-body .card-body {
+  padding-bottom: 0; }

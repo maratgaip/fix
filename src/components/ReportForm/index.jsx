@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import serialize from 'form-serialize'
+import {Link} from 'react-router-dom'
 
 import Header from '../Common/Header';
 import './style.css';
@@ -820,7 +821,8 @@ class ReportForm extends Component {
               </div>
             </div>
             </div>
-          </div><div className="card">
+          </div>
+            <div className="card">
             <div className="card-body">
               <h5 className="card-title">Dash</h5>
               <div className="input-group">
@@ -884,7 +886,6 @@ class ReportForm extends Component {
         {err.map(e=><div className="alert alert-danger" role="alert">{e}</div>)}
       </div>
     )
-    console.log(errContent)
     return (
       <Fragment>
         <Header />
@@ -896,6 +897,7 @@ class ReportForm extends Component {
                   <div className="input-group-prepend"><span className="input-group-text">Job Request ID</span></div>
                   <input type="text" onChange={e=>this.onInputChange('jobRequestId',e)} className="form-control" name="jobRequestId" placeholder="Enter Job Request ID"/>
                 </div>
+                <Link className="btn btn-primary" to="">Add Quote</Link>
                 {infoContent}
               </div>
             </div>

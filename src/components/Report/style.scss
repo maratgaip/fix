@@ -57,7 +57,6 @@ padding-bottom: 100px;
    display: inline-block;
    list-style: none;
    width: 25%;
-   text-align: center;
   }
 }
 
@@ -130,5 +129,31 @@ padding-bottom: 100px;
   li {
     display: inline-block;
     width: 30%;
+  }
+}
+
+
+.inspection-colors{
+  &.good::before {
+    color: $good;
+  }
+  &.bad::before {
+    color: $bad;
+  }
+  &.excellent::before {
+    color:$excellent;
+  }
+  &::before {
+    content: "\2022";
+    font-weight: bold;
+    font-size: 70px;
+    line-height: 0;
+    vertical-align: middle;
+  }
+}
+
+.modal-body {
+  .card-body {
+    padding-bottom: 0;
   }
 }
