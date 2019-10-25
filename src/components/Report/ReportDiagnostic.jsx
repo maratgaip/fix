@@ -267,53 +267,58 @@ class ReportDiagnostic extends Component {
                 </p>
               </div>
             </div>
-            <div className="card-title"><strong>Photos:</strong></div>
-            <div className="card">
-              <div className="card-body">
-                <p className="card-text">
-                  {
-                    photos.map(photo=>{
-                      <img className="car-pictures" src={photo.url} alt={photo.name} title={photo.name} />
-                    })
-                  }
-                </p>
-              </div>
-            </div>
+            {/*<div className="card-title"><strong>Photos:</strong></div>*/}
+            {/*<div className="card">*/}
+              {/*<div className="card-body">*/}
+                {/*<p className="card-text">*/}
+                  {/*{*/}
+                    {/*photos.map(photo=>{*/}
+                      {/*<img className="car-pictures" src={photo.url} alt={photo.name} title={photo.name} />*/}
+                    {/*})*/}
+                  {/*}*/}
+                {/*</p>*/}
+              {/*</div>*/}
+            {/*</div>*/}
             <p>
               <div className="card-title"><strong>Quote from mechanics nearby:</strong></div>
-              {
-                quotes.map((item, ind)=>{
-                  const { mechanic, repairs, soonestAvailableDateTime, photo } =  item;
-                  const quotedPrice = repairs.find(item=>item.isReportedByConsumer).price;
-                  return (
-                    <div className="card">
-                      <div className="card-body">
-                        <div className="card-content img">
-                          <img src={Photo1} className="card-img-top"/>
-                        </div>
-                        <div className="card-content">
-                          <h5 className="card-title mb-0">{mechanic.name}</h5>
-                          <ul className="quotes">
-                            <li>{mechanic.address}, {mechanic.city}, {mechanic.state} {mechanic.state} {mechanic.zip} </li>
-                            <li>
-                              <div className="quote-title">Quoted Price</div>
-                              <div className="price">${quotedPrice}</div>
-                            </li>
-                            <li>
-                              <div className="quote-title">Soonest Availability</div>
-                              <div className="date">{soonestAvailableDateTime}</div>
-                            </li>
-                            <li>
-                              <button onClick={()=>this.openQuote(ind)} type="button" className="btn btn-primary" data-toggle="modal"
-                                      data-target=".bd-example-modal-lg">See Details</button>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  )
-                })
-              }
+              <div className="card">
+                <div className="card-body">
+                  Currently requesting quotes from nearby shops. We will text you on your phone as soon as you receive quotes.
+                </div>
+              </div>
+              {/*{*/}
+                {/*quotes.map((item, ind)=>{*/}
+                  {/*const { mechanic, repairs, soonestAvailableDateTime, photo } =  item;*/}
+                  {/*const quotedPrice = repairs.find(item=>item.isReportedByConsumer).price;*/}
+                  {/*return (*/}
+                    {/*<div className="card">*/}
+                      {/*<div className="card-body">*/}
+                        {/*<div className="card-content img">*/}
+                          {/*<img src={Photo1} className="card-img-top"/>*/}
+                        {/*</div>*/}
+                        {/*<div className="card-content">*/}
+                          {/*<h5 className="card-title mb-0">{mechanic.name}</h5>*/}
+                          {/*<ul className="quotes">*/}
+                            {/*<li>{mechanic.address}, {mechanic.city}, {mechanic.state} {mechanic.state} {mechanic.zip} </li>*/}
+                            {/*<li>*/}
+                              {/*<div className="quote-title">Quoted Price</div>*/}
+                              {/*<div className="price">${quotedPrice}</div>*/}
+                            {/*</li>*/}
+                            {/*<li>*/}
+                              {/*<div className="quote-title">Soonest Availability</div>*/}
+                              {/*<div className="date">{soonestAvailableDateTime}</div>*/}
+                            {/*</li>*/}
+                            {/*<li>*/}
+                              {/*<button onClick={()=>this.openQuote(ind)} type="button" className="btn btn-primary" data-toggle="modal"*/}
+                                      {/*data-target=".bd-example-modal-lg">See Details</button>*/}
+                            {/*</li>*/}
+                          {/*</ul>*/}
+                        {/*</div>*/}
+                      {/*</div>*/}
+                    {/*</div>*/}
+                  {/*)*/}
+                {/*})*/}
+              {/*}*/}
             </p>
           </div>
     );
