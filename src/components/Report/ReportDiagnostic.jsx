@@ -1,5 +1,7 @@
 import React, {Component, Fragment} from 'react';
-import Photo1 from './assets/car1.png';
+import MechanicImg1 from './assets/mechanic1.png';
+import MechanicImg2 from './assets/mechanic2.png';
+import MechanicImg3 from './assets/mechanic3.png';
 
 const quotes = {
   "id": 7,
@@ -331,12 +333,13 @@ class ReportDiagnostic extends Component {
                 <div>Your Selected Mechanic</div>
               );
               const isSelectedClass = selectedQuoteId !== id ? 'card-body' : 'card-body bg-info text-white';
+              const mechanicImg = !ind ? MechanicImg1 : ind===1 ? MechanicImg2 : MechanicImg3;
               return (
                 <div className="card">
                   <div className={isSelectedClass}>
                     {isSelectedQuoteUi}
                     <div className="card-content img">
-                      <img src={Photo1} className="card-img-top"/>
+                      <img src={mechanicImg} className="card-img-top"/>
                     </div>
                     <div className="card-content">
                       <h5 className="card-title mb-0">{mechanic.name}</h5>
